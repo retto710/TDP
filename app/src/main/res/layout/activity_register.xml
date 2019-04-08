@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterActivity">
+<TextView
+    android:id="@+id/title"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    android:text="REGISTRO DE PACIENTE"
+    app:layout_constraintTop_toTopOf="parent"
+    style="@style/Base.TextAppearance.AppCompat.Title"
+    />
+    <TextView
+        android:id="@+id/lblNombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nombre"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        style="@style/Base.TextAppearance.AppCompat.SearchResult.Subtitle"
+        />
+    <EditText
+        android:id="@+id/edtNombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Ingrese nombre de paciente"
+        app:layout_constraintTop_toBottomOf="@id/lblNombre"
+
+        />
+    <TextView
+        android:id="@+id/lblApellidos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Apellidos"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edtNombre"
+        style="@style/Base.TextAppearance.AppCompat.SearchResult.Subtitle"
+        />
+    <EditText
+        android:id="@+id/edtApellidos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Ingrese Apellido de paciente"
+        app:layout_constraintTop_toBottomOf="@id/lblApellidos"
+        />
+    <TextView
+        android:id="@+id/lblDNI"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="DNI"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edtApellidos"
+        style="@style/Base.TextAppearance.AppCompat.SearchResult.Subtitle"
+        />
+    <EditText
+        android:id="@+id/edtDNI"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Ingrese DNI de paciente"
+        app:layout_constraintTop_toBottomOf="@id/lblDNI"
+        android:inputType="number"
+        />
+    <TextView
+        android:id="@+id/lblTelefono"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Numero de Telefono"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edtDNI"
+        style="@style/Base.TextAppearance.AppCompat.SearchResult.Subtitle"
+        />
+    <EditText
+        android:id="@+id/edtTelefono"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Ingrese numero de telefono"
+        app:layout_constraintTop_toBottomOf="@id/lblTelefono"
+        android:inputType="number"
+        />
+    <TextView
+        android:id="@+id/lblFechaNacimiento"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Fecha de nacimiento"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edtTelefono"
+        style="@style/Base.TextAppearance.AppCompat.SearchResult.Subtitle"
+        />
+    <EditText
+        android:id="@+id/edtFecha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Ingrese fecha de nacimiento del paciente"
+        app:layout_constraintTop_toBottomOf="@id/lblFechaNacimiento"
+        android:inputType="date"
+        />
+    <Button
+        android:id="@+id/btnGuardar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="Guardar"
+        />
+</android.support.constraint.ConstraintLayout>
