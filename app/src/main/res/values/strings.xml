@@ -17,4 +17,13 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+
+    <string-array name="array">
+            <item>Masculino</item>
+            <item>Femenino</item>
+            <item>Otro</item>
+       </string-array>
+
+
+
 </resources>
