@@ -27,7 +27,7 @@ public class LogoActivity extends AppCompatActivity {
         Animation animation= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.logo_anim);
         imgLogo.startAnimation(animation);
         new Handler().postDelayed(() -> {
-            Intent HomeIntent= new Intent(getApplicationContext(),LoginActivity.class);
+            Intent HomeIntent= new Intent(getApplicationContext(),MainActivity.class);
             startActivity(HomeIntent);
             finish();
         },SPLASH_TIME_OUT);

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "644286998392",
+    "firebase_url": "https://cancerapp-79383.firebaseio.com",
+    "project_id": "cancerapp-79383",
+    "storage_bucket": "cancerapp-79383.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:644286998392:android:fc1f112fe752b294",
+        "android_client_info": {
+          "package_name": "com.yashsoni.visualrecognitionsample"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "644286998392-qelv0r4914gp12g6dtja65q63qp187jv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.yashsoni.visualrecognitionsample",
+            "certificate_hash": "eb1f0a086f32994126970477a778773e57938b41"
+          }
+        },
+        {
+          "client_id": "644286998392-i3jd7909rks1p02vgiuasa5lmburc4o5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBp0ANpDOKZN6JzkLMyn4v9lPy5iUgjtAQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "644286998392-i3jd7909rks1p02vgiuasa5lmburc4o5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
