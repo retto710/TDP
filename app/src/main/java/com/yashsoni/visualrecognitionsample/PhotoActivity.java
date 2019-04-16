@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.media.ExifInterface;
 import android.net.Uri;
@@ -21,8 +22,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.Continuation;
@@ -34,7 +39,10 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -44,9 +52,11 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-public class PhotoActivity extends AppCompatActivity {
+public class PhotoActivity extends AppCompatActivity  {
     private static final int TAKE_PICTURE = 1;
     private Uri imageUri;
     protected static final int GALLERY_PICTURE = 1;
@@ -58,14 +68,61 @@ public class PhotoActivity extends AppCompatActivity {
     private Uri downloadUrl;
     FirebaseFirestore db;
     EditText edtDNI;
+    Button btnBuscar;
+    Button btnCamara;
+    TextView txtNombre;
+    TextView txtApePat;
+    Spinner spinDerm;
     FirebaseStorage storage = FirebaseStorage.getInstance();
+    List<String> dermatologos = new ArrayList<String>();
+    ArrayAdapter<String> dataAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo);
-        Button btnCamara = (Button) findViewById(R.id.btn1);
+        btnCamara = (Button) findViewById(R.id.btn1);
         db = FirebaseFirestore.getInstance();
         edtDNI= findViewById(R.id.edtDNI);
+        btnBuscar= findViewById(R.id.btnBuscar);
+        txtNombre= findViewById(R.id.txtNombre);
+        txtApePat= findViewById(R.id.txtApePat);
+        spinDerm= findViewById(R.id.spinDerm);
+
+
+
+        db.collection("dermatologos")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d("", document.getId() + " => " + document.getData());
+                                dermatologos.add(document.getData().get("nombre").toString());
+
+                            }
+                        } else {
+                            Log.d("", "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+
+        //Datos del spinner
+        dataAdapter = new ArrayAdapter<String>
+                (this, android.R.layout.simple_spinner_item,
+                        dermatologos);
+        // Specify the layout to use when the list of choices appears
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        spinDerm.setAdapter(dataAdapter);
+
+        btnBuscar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BuscarCliente(edtDNI.getText().toString());
+            }
+        });
+
         btnCamara.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,14 +130,7 @@ public class PhotoActivity extends AppCompatActivity {
             }
         });
 
-        Button btnURL = (Button) findViewById(R.id.btn3);
-        btnURL.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent HomeIntent= new Intent(getApplicationContext(),HomeActivity.class);
-                startActivity(HomeIntent);
-            }
-        });
+
     }
     private void startDialogImage() {
         AlertDialog.Builder myAlertDialog = new AlertDialog.Builder(
@@ -275,7 +325,8 @@ public class PhotoActivity extends AppCompatActivity {
                     Uri downloadUri = task.getResult();
                     DocumentReference washingtonRef = db.collection("pacientes").document(edtDNI.getText().toString());
                     washingtonRef
-                            .update("url", downloadUri.toString())
+                            .update("url", downloadUri.toString()
+                                    )
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
@@ -309,5 +360,32 @@ public class PhotoActivity extends AppCompatActivity {
         int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
         return cursor.getString(idx);
     }
+    private void BuscarCliente(String dni)
+    {
+        DocumentReference docRef = db.collection("pacientes").document(dni);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Log.d("resultado", "DocumentSnapshot data: " + document.getData());
+                        btnCamara.setEnabled(true);
+                        txtApePat.setText( document.getData().get("apPat").toString());
+                        txtNombre.setText( document.getData().get("nombre").toString());
+                    } else {
+                        Log.d("resultado", "No such document");
+                        btnCamara.setEnabled(false);
+                        txtApePat.setText("");
+                        txtNombre.setText("");
+                    }
+                } else {
+                    Log.d("resultado", "get failed with ", task.getException());
+                }
+            }
+        });
+    }
+
+
 
 }

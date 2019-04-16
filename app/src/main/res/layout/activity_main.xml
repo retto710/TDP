@@ -37,7 +37,15 @@
             android:background="@color/colorPrimaryDark"
             android:text="Mostrar Resultados"
             android:textColor="@android:color/white" />
+        <Button
+            android:id="@+id/btnTest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="test"
+            />
+
     </LinearLayout>
+
 
     <ProgressBar
         android:id="@+id/progress_bar"

@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.yashsoni.visualrecognitionsample.activities.HomeActivity;
+
 public class MenuAuxActivity extends AppCompatActivity {
 
     @Override
@@ -27,6 +29,15 @@ public class MenuAuxActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent HomeIntent= new Intent(getApplicationContext(),PhotoActivity.class);
+                startActivity(HomeIntent);
+            }
+        });
+
+        Button btnResultado = findViewById(R.id.btnResultado);
+        btnResultado.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent HomeIntent= new Intent(getApplicationContext(), HomeActivity.class);
                 startActivity(HomeIntent);
             }
         });

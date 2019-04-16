@@ -1,5 +1,7 @@
 package com.yashsoni.visualrecognitionsample.activities;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,6 +13,7 @@ import com.yashsoni.visualrecognitionsample.R;
 import com.yashsoni.visualrecognitionsample.adapters.VisualRecognitionResultAdapter;
 import com.yashsoni.visualrecognitionsample.models.VisualRecognitionResponseModel;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class ResultsActivity extends AppCompatActivity {
@@ -34,8 +37,10 @@ public class ResultsActivity extends AppCompatActivity {
 
     private void initializeViews() {
         ImageView imageView = findViewById(R.id.image);
-        Glide.with(this).load(url).into(imageView);
-
+        //Glide.with(this).load(url).into(imageView);
+        File imgFile = new  File(url);
+        Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+        imageView.setImageBitmap(myBitmap);
         mRecyclerView = findViewById(R.id.recyclerView);
 
         // use this setting to improve performance if you know that changes

@@ -51,7 +51,6 @@
             android:hint="Ingrese Apellido paterno del paciente"
             />
         <TextView
-            android:id="@+id/lblApellidoMaterno"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Apellido Materno"
@@ -64,7 +63,6 @@
             android:hint="Ingrese Apellido materno del paciente"
             />
         <TextView
-            android:id="@+id/lblEdad"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Edad"
@@ -78,7 +76,6 @@
             android:inputType="number"
             />
         <TextView
-            android:id="@+id/lblGenero"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Genero"
@@ -91,7 +88,6 @@
             android:hint="Ingrese edad"
             />
         <TextView
-            android:id="@+id/lblDNI"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="DNI"
@@ -105,7 +101,6 @@
             android:inputType="number"
             />
         <TextView
-            android:id="@+id/lblDireccion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Direccion"
@@ -119,7 +114,6 @@
             android:inputType="number"
             />
         <TextView
-            android:id="@+id/lblTelefono"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Numero de Telefono"
@@ -133,7 +127,6 @@
             android:inputType="number"
             />
         <TextView
-            android:id="@+id/lblCorreo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Correo electronico"

@@ -91,6 +91,7 @@ public class RegisterActivity extends AppCompatActivity {
         paciente.put("gen", spinGenero.getSelectedItem().toString());
         paciente.put("dir", edtDireccion.getText().toString());
         paciente.put("url", "");
+        paciente.put("derm", "");
         // Add a new document with a generated ID
         /*
         db.collection("pacientes")

@@ -2,13 +2,20 @@ package com.yashsoni.visualrecognitionsample.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.ibm.watson.developer_cloud.service.security.IamOptions;
 import com.ibm.watson.developer_cloud.visual_recognition.v3.VisualRecognition;
 import com.ibm.watson.developer_cloud.visual_recognition.v3.model.ClassResult;
@@ -17,6 +24,8 @@ import com.ibm.watson.developer_cloud.visual_recognition.v3.model.ClassifyOption
 import com.yashsoni.visualrecognitionsample.R;
 import com.yashsoni.visualrecognitionsample.models.VisualRecognitionResponseModel;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -40,7 +49,7 @@ public class HomeActivity extends AppCompatActivity {
     View content;
     Single<ClassifiedImages> observable;
     private float threshold = (float) 0.6;
-
+    File localFile;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,10 +60,11 @@ public class HomeActivity extends AppCompatActivity {
             IamOptions options = new IamOptions.Builder()
                     .apiKey(API_KEY)
                     .build();
-
+            DownloadImage();
             VisualRecognition visualRecognition = new VisualRecognition("2018-03-19", options);
             ClassifyOptions classifyOptions = new ClassifyOptions.Builder()
-                    .url(etUrl.getText().toString())
+                    .imagesFile(localFile)
+                    //.url(etUrl.getText().toString())
                     .threshold((float) 0.6)
                     .classifierIds(Arrays.asList("ModelodeReconocimientodeCancer_1741189594"))
                     .build();
@@ -88,7 +98,7 @@ public class HomeActivity extends AppCompatActivity {
             classes.add(model);
         }
         Intent i = new Intent(HomeActivity.this, ResultsActivity.class);
-        i.putExtra("url", url);
+        i.putExtra("url", localFile.getAbsolutePath());
         i.putParcelableArrayListExtra("classes", classes);
         startActivity(i);
     }
@@ -125,6 +135,41 @@ public class HomeActivity extends AppCompatActivity {
                 });
             } else {
                 Toast.makeText(HomeActivity.this, "Please make sure image URL is proper!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void DownloadImage() throws IOException {
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageRef = storage.getReference();
+        StorageReference httpsReference = storage.getReferenceFromUrl("https://firebasestorage.googleapis.com/v0/b/cancerapp-79383.appspot.com/o/images%2F1555451113041.jpg?alt=media&token=8c14e2cf-be3b-467d-9495-8e401218b939");
+        final long ONE_MEGABYTE = 1024 * 1024;
+        httpsReference.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+            @Override
+            public void onSuccess(byte[] bytes) {
+                // Data for "images/island.jpg" is returns, use this as needed
+                Log.d("","1suc");
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle any errors
+                Log.d("","1fail");
+            }
+        });
+
+        localFile = File.createTempFile("images", "jpg");
+        httpsReference.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                // Local temp file has been created
+                Log.d("AR","SE CREO ARCHIVO");
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle any errors
+                Log.d("","faill");
             }
         });
     }
