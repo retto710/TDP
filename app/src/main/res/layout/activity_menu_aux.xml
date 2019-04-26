@@ -31,7 +31,7 @@
                 android:id="@+id/imgAddPat"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:src="@drawable/patientIcon"
+                android:src="@drawable/iconpatient"
                 android:layout_weight="1"
 
                 />
@@ -52,7 +52,7 @@
                 android:id="@+id/imgModPat"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:src="@drawable/modIcon"
+                android:src="@drawable/iconmod"
                 android:layout_weight="1"
 
                 />
@@ -82,7 +82,7 @@
                 android:id="@+id/imgUpPhoto"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:src="@drawable/OpenCamera1"
+                android:src="@drawable/iconcamara"
                 android:layout_weight="1"
 
                 />
@@ -103,7 +103,7 @@
                 android:id="@+id/imgResult"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:src="@drawable/resultIcon"
+                android:src="@drawable/iconresult"
                 android:layout_weight="1"
                 />
             <TextView
