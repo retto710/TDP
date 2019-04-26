@@ -92,6 +92,8 @@ public class RegisterActivity extends AppCompatActivity {
         paciente.put("dir", edtDireccion.getText().toString());
         paciente.put("url", "");
         paciente.put("derm", "");
+        paciente.put("clase", "");
+        paciente.put("score", "");
         // Add a new document with a generated ID
         /*
         db.collection("pacientes")

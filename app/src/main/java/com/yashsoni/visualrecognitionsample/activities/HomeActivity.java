@@ -11,8 +11,13 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -46,16 +51,29 @@ public class HomeActivity extends AppCompatActivity {
     Button btnFetchResults;
     EditText etUrl;
     ProgressBar progressBar;
+    FirebaseFirestore db;
     View content;
     Single<ClassifiedImages> observable;
     private float threshold = (float) 0.6;
     File localFile;
+    String urlFoto;
+    EditText edtDni;
+    Button btnBuscar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        db = FirebaseFirestore.getInstance();
 
         initializeViews();
+        edtDni= findViewById(R.id.edtDNI);
+        btnBuscar= findViewById(R.id.btnBuscar);
+        btnBuscar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BuscarCliente(edtDni.getText().toString());
+            }
+        });
         observable = Single.create((SingleOnSubscribe<ClassifiedImages>) emitter -> {
             IamOptions options = new IamOptions.Builder()
                     .apiKey(API_KEY)
@@ -95,11 +113,31 @@ public class HomeActivity extends AppCompatActivity {
             VisualRecognitionResponseModel model = new VisualRecognitionResponseModel();
             model.setClassName(result.getClassName());
             model.setScore(result.getScore());
+            DocumentReference washingtonRef = db.collection("pacientes").document(edtDni.getText().toString());
+            washingtonRef.update("Benigno","");
+            washingtonRef.update("Maligno","");
+            washingtonRef.update(result.getClassName(),result.getScore()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    Log.d(" SUCCESS UPDATE", "DocumentSnapshot successfully updated!");
+                }
+            })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w(" FAIL UPDATE", "Error updating document", e);
+                        }
+                    });
             classes.add(model);
         }
+
+
+
+
         Intent i = new Intent(HomeActivity.this, ResultsActivity.class);
         i.putExtra("url", localFile.getAbsolutePath());
         i.putParcelableArrayListExtra("classes", classes);
+        i.putExtra("dni",edtDni.getText().toString());
         startActivity(i);
     }
 
@@ -139,10 +177,32 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
+    private void BuscarCliente(String dni)
+    {
+        DocumentReference docRef = db.collection("pacientes").document(dni);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Log.d("resultado", "DocumentSnapshot data: " + document.getData());
+                        urlFoto=document.getData().get("url").toString();
+                    } else {
+                        Log.d("resultado", "No such document");
+
+                    }
+                } else {
+                    Log.d("resultado", "get failed with ", task.getException());
+                }
+            }
+        });
+    }
+
     private void DownloadImage() throws IOException {
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReference();
-        StorageReference httpsReference = storage.getReferenceFromUrl("https://firebasestorage.googleapis.com/v0/b/cancerapp-79383.appspot.com/o/images%2F1555451113041.jpg?alt=media&token=8c14e2cf-be3b-467d-9495-8e401218b939");
+        StorageReference httpsReference = storage.getReferenceFromUrl(urlFoto);
         final long ONE_MEGABYTE = 1024 * 1024;
         httpsReference.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
             @Override

@@ -39,14 +39,19 @@
             android:maxLines="2"
             android:text="URL (debe terminar en jpeg/jpg/png):"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:visibility="invisible"
+            />
 
         <EditText
             android:id="@+id/et_url"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Ingrese el url..."
-            android:lines="4" />
+            android:text="http://.jpg"
+            android:lines="4"
+            android:visibility="invisible"
+            />
 
         <Button
             android:id="@+id/btn_fetch_results"
@@ -61,6 +66,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="test"
+            android:visibility="invisible"
             />
 
     </LinearLayout>

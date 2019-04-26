@@ -5,8 +5,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.yashsoni.visualrecognitionsample.activities.HomeActivity;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MenuAuxActivity extends AppCompatActivity {
 
@@ -14,27 +17,24 @@ public class MenuAuxActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_aux);
-
-        Button btnRegister = (Button) findViewById(R.id.btnPaciente);
-        btnRegister.setOnClickListener(new View.OnClickListener() {
+        CircleImageView img = findViewById(R.id.imgAddPat);
+        img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent HomeIntent= new Intent(getApplicationContext(),RegisterActivity.class);
                 startActivity(HomeIntent);
             }
         });
-
-        Button btnFoto = (Button) findViewById(R.id.btnFoto);
-        btnFoto.setOnClickListener(new View.OnClickListener() {
+        CircleImageView addPhoto = findViewById(R.id.imgUpPhoto);
+        addPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent HomeIntent= new Intent(getApplicationContext(),PhotoActivity.class);
                 startActivity(HomeIntent);
             }
         });
-
-        Button btnResultado = findViewById(R.id.btnResultado);
-        btnResultado.setOnClickListener(new View.OnClickListener() {
+        CircleImageView imgResultado = findViewById(R.id.imgUpPhoto);
+        imgResultado.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent HomeIntent= new Intent(getApplicationContext(), HomeActivity.class);

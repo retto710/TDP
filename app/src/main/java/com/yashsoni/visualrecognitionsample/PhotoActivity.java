@@ -331,6 +331,11 @@ public class PhotoActivity extends AppCompatActivity  {
                                 @Override
                                 public void onSuccess(Void aVoid) {
                                     Log.d(" SUCCESS UPDATE", "DocumentSnapshot successfully updated!");
+                                    Toast.makeText(getBaseContext(),
+                                            "Imagen Subida", Toast.LENGTH_LONG)
+                                            .show();
+                                    Intent HomeIntent= new Intent(getApplicationContext(),MenuAuxActivity.class);
+                                    startActivity(HomeIntent);
                                 }
                             })
                             .addOnFailureListener(new OnFailureListener() {
