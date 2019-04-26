@@ -19,11 +19,10 @@
     <string name="title_notifications">Notifications</string>
 
     <string-array name="array">
-            <item>Masculino</item>
-            <item>Femenino</item>
-            <item>Otro</item>
-       </string-array>
-
+        <item>Masculino</item>
+        <item>Femenino</item>
+        <item>Otro</item>
+    </string-array>
 
 
 </resources>

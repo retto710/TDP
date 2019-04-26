@@ -50,7 +50,7 @@ public class RegisterActivity extends AppCompatActivity {
         edtDNI=findViewById(R.id.edtDNI);
         edtEdad=findViewById(R.id.edtEdad);
         spinGenero=findViewById(R.id.spinGenero);
-        edtDireccion=findViewById(R.id.edtDireccion);
+        //edtDireccion=findViewById(R.id.edtDireccion);
         edtTelefono=findViewById(R.id.edtTelefono);
         edtCorreo=findViewById(R.id.edtCorreo);
         //Datos del spinner
@@ -65,7 +65,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 CrearPaciente();
-                Intent HomeIntent= new Intent(getApplicationContext(),MenuAuxActivity.class);
+                Intent HomeIntent= new Intent(getApplicationContext(),RegisterGeoDatActivity.class);
                 startActivity(HomeIntent);
             }
         });
@@ -89,11 +89,17 @@ public class RegisterActivity extends AppCompatActivity {
         paciente.put("correo", edtCorreo.getText().toString());
         paciente.put("edad", edtEdad.getText().toString());
         paciente.put("gen", spinGenero.getSelectedItem().toString());
-        paciente.put("dir", edtDireccion.getText().toString());
+        //paciente.put("dir", edtDireccion.getText().toString());
         paciente.put("url", "");
         paciente.put("derm", "");
         paciente.put("clase", "");
         paciente.put("score", "");
+        paciente.put("distrito", "");
+        paciente.put("departamento", "");
+        paciente.put("dir", "");
+        paciente.put("zonificacion", "");
+        paciente.put("provincia", "");
+        paciente.put("region", "");
         // Add a new document with a generated ID
         /*
         db.collection("pacientes")

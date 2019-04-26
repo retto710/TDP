@@ -33,7 +33,7 @@ public class MenuAuxActivity extends AppCompatActivity {
                 startActivity(HomeIntent);
             }
         });
-        CircleImageView imgResultado = findViewById(R.id.imgUpPhoto);
+        CircleImageView imgResultado = findViewById(R.id.imgResult);
         imgResultado.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
