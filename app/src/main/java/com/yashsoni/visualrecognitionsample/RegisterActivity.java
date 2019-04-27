@@ -117,6 +117,7 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                 });*/
         //Otra manera de guardar
+
         pacientes.document(edtDNI.getText().toString()).set(paciente);
         BuscarCliente(edtDNI.getText().toString());
         }
@@ -143,4 +144,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
     }
+
+
+
 }

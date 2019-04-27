@@ -23,25 +23,20 @@
             app:layout_constraintTop_toTopOf="parent"
             style="@style/Base.TextAppearance.AppCompat.Title"
             />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Region"
-            style="@style/Base.TextAppearance.AppCompat.SearchResult.Subtitle"
-            />
-        <Spinner
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Departamento"
             style="@style/Base.TextAppearance.AppCompat.SearchResult.Subtitle"
             />
-        <Spinner
-            android:layout_width="wrap_content"
+        <AutoCompleteTextView
+            android:id="@+id/autoDepart"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="Ingrese un departamento"
+            android:completionThreshold="1"
+            android:completionHint="Seleccione un Departamento"
             />
         <TextView
             android:layout_width="match_parent"
@@ -49,9 +44,13 @@
             android:text="Provincia"
             style="@style/Base.TextAppearance.AppCompat.SearchResult.Subtitle"
             />
-        <Spinner
-            android:layout_width="wrap_content"
+        <AutoCompleteTextView
+            android:id="@+id/autoProv"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="Ingrese una provincia"
+            android:completionThreshold="1"
+            android:completionHint="Seleccione un Departamento"
             />
         <TextView
             android:layout_width="match_parent"
@@ -59,9 +58,13 @@
             android:text="Distrito"
             style="@style/Base.TextAppearance.AppCompat.SearchResult.Subtitle"
             />
-        <Spinner
-            android:layout_width="wrap_content"
+        <AutoCompleteTextView
+            android:id="@+id/autoDist"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="Ingrese un departamento"
+            android:completionThreshold="1"
+            android:completionHint="Seleccione un Departamento"
             />
         <TextView
             android:layout_width="match_parent"

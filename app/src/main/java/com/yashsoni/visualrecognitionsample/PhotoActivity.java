@@ -24,6 +24,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -72,10 +73,10 @@ public class PhotoActivity extends AppCompatActivity  {
     Button btnCamara;
     TextView txtNombre;
     TextView txtApePat;
-    Spinner spinDerm;
+    AutoCompleteTextView autoDerm;
     FirebaseStorage storage = FirebaseStorage.getInstance();
-    List<String> dermatologos = new ArrayList<String>();
-    ArrayAdapter<String> dataAdapter;
+    ArrayList<String> dermatologos = new ArrayList<String>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,8 +87,7 @@ public class PhotoActivity extends AppCompatActivity  {
         btnBuscar= findViewById(R.id.btnBuscar);
         txtNombre= findViewById(R.id.txtNombre);
         txtApePat= findViewById(R.id.txtApePat);
-        spinDerm= findViewById(R.id.spinDerm);
-
+        autoDerm= findViewById(R.id.autoDerm);
 
 
         db.collection("dermatologos")
@@ -97,9 +97,8 @@ public class PhotoActivity extends AppCompatActivity  {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d("", document.getId() + " => " + document.getData());
+                                Log.d("dermato", document.getId() + " => " + document.getData());
                                 dermatologos.add(document.getData().get("nombre").toString());
-
                             }
                         } else {
                             Log.d("", "Error getting documents: ", task.getException());
@@ -107,14 +106,12 @@ public class PhotoActivity extends AppCompatActivity  {
                     }
                 });
 
-        //Datos del spinner
-        dataAdapter = new ArrayAdapter<String>
-                (this, android.R.layout.simple_spinner_item,
-                        dermatologos);
-        // Specify the layout to use when the list of choices appears
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
-        spinDerm.setAdapter(dataAdapter);
+        ArrayAdapter<String> adapter= new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,dermatologos);
+        autoDerm.setAdapter(adapter);
+
+
+
+
 
         btnBuscar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -390,7 +387,4 @@ public class PhotoActivity extends AppCompatActivity  {
             }
         });
     }
-
-
-
 }
