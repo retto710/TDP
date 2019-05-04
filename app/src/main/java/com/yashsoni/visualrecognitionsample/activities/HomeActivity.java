@@ -6,6 +6,8 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -18,6 +20,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -27,6 +31,7 @@ import com.ibm.watson.developer_cloud.visual_recognition.v3.model.ClassResult;
 import com.ibm.watson.developer_cloud.visual_recognition.v3.model.ClassifiedImages;
 import com.ibm.watson.developer_cloud.visual_recognition.v3.model.ClassifyOptions;
 import com.yashsoni.visualrecognitionsample.R;
+import com.yashsoni.visualrecognitionsample.RegisterClinicDatActivity;
 import com.yashsoni.visualrecognitionsample.models.VisualRecognitionResponseModel;
 
 import java.io.File;
@@ -59,19 +64,38 @@ public class HomeActivity extends AppCompatActivity {
     String urlFoto;
     EditText edtDni;
     Button btnBuscar;
+    ArrayList<String> dermatologos = new ArrayList<String>();
+    AutoCompleteTextView autoDerm;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         db = FirebaseFirestore.getInstance();
+        autoDerm=findViewById(R.id.autoDerma);
+        db.collection("dermatologos")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d("dermato", document.getId() + " => " + document.getData());
+                                dermatologos.add(document.getData().get("nombre").toString());
+                            }
+                        } else {
+                            Log.d("", "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
 
-        initializeViews();
+        ArrayAdapter<String> adapter= new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,dermatologos);
+        autoDerm.setAdapter(adapter);
+
         Intent intent = getIntent();
         String dniPaciente=intent.getStringExtra("DNI");
         edtDni= findViewById(R.id.edtDNI);
         edtDni.setText(dniPaciente);
         btnBuscar= findViewById(R.id.btnBuscar);
-        BuscarCliente(dniPaciente);
 
         observable = Single.create((SingleOnSubscribe<ClassifiedImages>) emitter -> {
             IamOptions options = new IamOptions.Builder()
@@ -83,13 +107,26 @@ public class HomeActivity extends AppCompatActivity {
                     .imagesFile(localFile)
                     //.url(etUrl.getText().toString())
                     .threshold((float) 0.6)
-                    .classifierIds(Arrays.asList("CancerApp_2004385449"))
+                    .classifierIds(Arrays.asList("DermApp_200152574"))
                     .build();
 
             ClassifiedImages classifiedImages = visualRecognition.classify(classifyOptions).execute();
             emitter.onSuccess(classifiedImages);
         }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
+        initializeViews();
+        btnFetchResults.setEnabled(false);
+        BuscarCliente(dniPaciente);
+        btnBuscar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                DocumentReference pacRef = db.collection("pacientes").document(dniPaciente);
+                pacRef.update(" dermatologo",autoDerm.getText().toString()
+                );
+                btnFetchResults.setEnabled(true);
+            }
+        });
     }
 
     private void goToNext(String url, List<ClassResult> resultList) {
@@ -115,6 +152,7 @@ public class HomeActivity extends AppCompatActivity {
             DocumentReference washingtonRef = db.collection("pacientes").document(edtDni.getText().toString());
             washingtonRef.update("Benigno","");
             washingtonRef.update("Maligno","");
+            washingtonRef.update("Melanoma","");
             washingtonRef.update(result.getClassName(),result.getScore()).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".PatientResumeActivity">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Resumen de Paciente"
+        style="@style/Base.TextAppearance.AppCompat.Title"
+        android:gravity="center"
+        />
+    <ImageView
+        android:id="@+id/imgMelanoma"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:src="@drawable/iconcamara"
+        android:layout_gravity="center"
+        />
+    <LinearLayout
+        android:id="@+id/lin1"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre Paciente"
+            android:layout_weight="1"
+            />
+        <TextView
+            android:id="@+id/txtNomb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="JOSE ANTONIO"
+            android:layout_weight="1"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/lin2"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Apellido Paciente"
+            android:layout_weight="1"
+            />
+        <TextView
+            android:id="@+id/txtApePat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="JOSE ANTONIO"
+            android:layout_weight="1"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/lin3"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DNI Paciente"
+            android:layout_weight="1"
+            />
+        <TextView
+            android:id="@+id/txtDNI"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12345567"
+            android:layout_weight="1"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/lin4"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Porc Melanoma"
+            android:layout_weight="1"
+            />
+        <TextView
+            android:id="@+id/txtPorc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="JOSE ANTONIO"
+            android:layout_weight="1"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/lin5"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Diagnostico Paciente"
+            android:layout_weight="1"
+            />
+        <TextView
+            android:id="@+id/txtDiagnostico"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="JOSE ANTONIO"
+            android:layout_weight="1"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/lin6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tratamiento Paciente"
+            android:layout_weight="1"
+            />
+        <TextView
+            android:id="@+id/txtTratamiento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="JOSE ANTONIO"
+            android:layout_weight="1"
+            />
+
+
+</LinearLayout>
+
+</LinearLayout>

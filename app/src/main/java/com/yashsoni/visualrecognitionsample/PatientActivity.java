@@ -129,7 +129,7 @@ public class PatientActivity extends AppCompatActivity {
                             photoUrl=document.getData().get("url").toString();
                         String score="";
                         //if (document.getData().get("score").toString().isEmpty())
-                        //score=document.getData().get("score").toString();
+                        score=document.getData().get("diagnostico").toString();
 
                         Paciente paciente = new Paciente(apePat,dni,photoUrl,score);
                         patients.add(paciente);
@@ -174,13 +174,9 @@ public class PatientActivity extends AppCompatActivity {
         myAlertDialog.setPositiveButton("Ver Diagnostico",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
-                        Intent pictureActionIntent = null;
-                        pictureActionIntent = new Intent(
-                                Intent.ACTION_PICK,
-                                MediaStore.Images.Media.INTERNAL_CONTENT_URI);
-                        startActivityForResult(
-                                pictureActionIntent,
-                                GALLERY_PICTURE);
+                        Intent HomeIntent= new Intent(getApplicationContext(),PatientResumeActivity.class);
+                        HomeIntent.putExtra("DNI",dniPaciente);
+                        startActivity(HomeIntent);
                     }
                 });
         myAlertDialog.setNegativeButton("Camara",

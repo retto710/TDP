@@ -97,7 +97,6 @@ public class RegisterActivity extends AppCompatActivity {
         paciente.put("gen", spinGenero.getSelectedItem().toString());
         //paciente.put("dir", edtDireccion.getText().toString());
         paciente.put("url", "");
-        paciente.put("derm", "");
         paciente.put("clase", "");
         paciente.put("score", "");
         paciente.put("distrito", "");
@@ -107,6 +106,13 @@ public class RegisterActivity extends AppCompatActivity {
         paciente.put("provincia", "");
         paciente.put("region", "");
         paciente.put("doctor", correo);
+        paciente.put("dermatologo", "");
+        paciente.put("tratamiento", "");
+        paciente.put("Benigno", "");
+        paciente.put("Maligno", "");
+        paciente.put("diagnostico", "");
+        paciente.put("Melanoma", "");
+
         // Add a new document with a generated ID
         /*
         db.collection("pacientes")

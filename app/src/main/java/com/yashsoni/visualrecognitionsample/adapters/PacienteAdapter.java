@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -65,6 +66,15 @@ public class PacienteAdapter extends ArrayAdapter<Paciente> {
         Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
         iconView.setImageBitmap(myBitmap);
 
+        CheckBox checkBox = listItemView.findViewById(R.id.checkboxDiag);
+        if (currentAndroidFlavor.getScore()=="")
+        {
+            checkBox.setChecked(false);
+        }
+        else   {
+
+            checkBox.setChecked(true);
+        }
         // Return the whole list item layout (containing 2 TextViews and an ImageView)
         // so that it can be shown in the ListView
         return listItemView;
