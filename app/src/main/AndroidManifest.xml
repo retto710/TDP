@@ -25,7 +25,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RegisterClinicDatActivity"></activity>
+
+        <activity android:name=".PatientActivity"></activity>
+        <activity android:name=".RegisterDoctorInfoActivity" />
+        <activity android:name=".RegisterDoctorActivity" />
+        <activity android:name=".RegisterClinicDatActivity" />
         <activity android:name=".RegisterGeoDatActivity" />
 
         <provider

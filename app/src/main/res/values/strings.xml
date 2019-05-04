@@ -23,6 +23,22 @@
         <item>Femenino</item>
         <item>Otro</item>
     </string-array>
-
-
+    <string-array name="zonificacion">
+        <item>Rural</item>
+        <item>Urbano</item>
+    </string-array>
+    <string-array name="sangr">
+        <item>O+</item>
+        <item>O-</item>
+        <item>A+</item>
+        <item>A-</item>
+        <item>B+</item>
+        <item>B-</item>
+        <item>AB+</item>
+        <item>AB-</item>
+    </string-array>
+    <string-array name="cancer">
+        <item>SI</item>
+        <item>NO</item>
+    </string-array>
 </resources>

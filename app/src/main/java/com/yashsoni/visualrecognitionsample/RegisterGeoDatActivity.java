@@ -12,11 +12,14 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
 
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -33,24 +36,40 @@ public class RegisterGeoDatActivity extends AppCompatActivity {
     private  String strDepart;
     private String strProv;
     private String strDist;
+    String dni;
     AutoCompleteTextView autoDepartamento;
     AutoCompleteTextView autoProvincia;
     AutoCompleteTextView autoDistrito;
+    Spinner spinZona;
+    EditText edtDireccion;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_geo_dat);
+        //INTENT
+        Intent intent = getIntent();
+        dni = intent.getExtras().getString("dni");
         //INICIALIZAR
         Button btn = findViewById(R.id.btnNext);
         autoDepartamento = findViewById(R.id.autoDepart);
         autoProvincia = findViewById(R.id.autoProv);
         autoDistrito = findViewById(R.id.autoDist);
+        spinZona= findViewById(R.id.spinZona);
+        edtDireccion= findViewById(R.id.edtDireccion);
         autoDepartamento.setEnabled(false);
         autoProvincia.setEnabled(false);
         autoDistrito.setEnabled(false);
         strDepart="";
         strDist="";
         strProv="";
+        //SPINNER
+        //Datos del spinner
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.zonificacion, android.R.layout.simple_spinner_item);
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        spinZona.setAdapter(adapter);
 
         //DEPARTAMENTOS
         FirebaseFirestore db;
@@ -173,7 +192,15 @@ public class RegisterGeoDatActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //GUARDAR DATOS
+                DocumentReference pacRef = db.collection("pacientes").document(dni);
+                pacRef
+                        .update(" departamento",autoDepartamento.getText().toString(),
+                                " provincia",autoProvincia.getText().toString(),"distrito",autoDistrito.getText().toString(),
+                                "direccion",edtDireccion.getText().toString(),"zonificacion",spinZona.getSelectedItem().toString()
+                                );
                 Intent HomeIntent= new Intent(getApplicationContext(),RegisterClinicDatActivity.class);
+                HomeIntent.putExtra("dni",dni);
                 startActivity(HomeIntent);
             }
         });

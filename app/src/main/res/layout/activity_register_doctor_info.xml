@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterDoctorInfoActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center|left"
+        android:padding="20dp"
+        >
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="DATOS PERSONALES"
+            app:layout_constraintTop_toTopOf="parent"
+            style="@style/Base.TextAppearance.AppCompat.Title"
+            />
+        <TextView
+            android:id="@+id/lblNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nombre"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            style="@style/Base.TextAppearance.AppCompat.SearchResult.Subtitle"
+            />
+        <EditText
+            android:id="@+id/edtNombre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Ingrese nombre"
+            android:inputType="text"
+            />
+        <TextView
+            android:id="@+id/lblApellidoPaterno"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Apellido Paterno"
+            style="@style/Base.TextAppearance.AppCompat.SearchResult.Subtitle"
+            />
+        <EditText
+            android:id="@+id/edtApellidoPaterno"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Ingrese Apellido paterno "
+            android:inputType="text"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Apellido Materno"
+            style="@style/Base.TextAppearance.AppCompat.SearchResult.Subtitle"
+            />
+        <EditText
+            android:id="@+id/edtApellidoMaterno"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Ingrese Apellido materno "
+            android:inputType="text"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Edad"
+            style="@style/Base.TextAppearance.AppCompat.SearchResult.Subtitle"
+            />
+        <EditText
+            android:id="@+id/edtEdad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Ingrese edad"
+            android:inputType="number"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Genero"
+            style="@style/Base.TextAppearance.AppCompat.SearchResult.Subtitle"
+            />
+        <Spinner
+            android:id="@+id/spinGenero"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Ingrese edad"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="DNI"
+            style="@style/Base.TextAppearance.AppCompat.SearchResult.Subtitle"
+            />
+        <EditText
+            android:id="@+id/edtDNI"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Ingrese DNI"
+            android:inputType="number"
+            android:maxLength="8"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hospital"
+            style="@style/Base.TextAppearance.AppCompat.SearchResult.Subtitle"
+            />
+        <EditText
+            android:id="@+id/edtHospital"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ingrese hospital"
+            android:inputType="text"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Numero de Telefono"
+            style="@style/Base.TextAppearance.AppCompat.SearchResult.Subtitle"
+            />
+        <EditText
+            android:id="@+id/edtTelefono"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Ingrese numero de telefono"
+            android:inputType="number"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Correo electronico"
+
+            style="@style/Base.TextAppearance.AppCompat.SearchResult.Subtitle"
+            />
+        <EditText
+            android:id="@+id/edtCorreo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Ingrese correo "
+            android:inputType="text"
+            android:enabled="false"
+            />
+        <Button
+            android:id="@+id/btnGuardar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Guardar"
+            />
+    </LinearLayout>
+</ScrollView>

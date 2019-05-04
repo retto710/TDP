@@ -28,9 +28,12 @@
             android:text="Peso"
             style="@style/Base.TextAppearance.AppCompat.SearchResult.Subtitle"
             />
-        <Spinner
+        <EditText
+            android:id="@+id/edtPeso"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:hint="Ingrese Peso (kg)"
             />
         <TextView
             android:layout_width="match_parent"
@@ -38,9 +41,12 @@
             android:text="Altura"
             style="@style/Base.TextAppearance.AppCompat.SearchResult.Subtitle"
             />
-        <Spinner
+        <EditText
+            android:id="@+id/edtAltura"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:inputType="number"
+            android:hint="Ingrese Altura (cm)"
             />
         <TextView
             android:layout_width="match_parent"
@@ -49,6 +55,7 @@
             style="@style/Base.TextAppearance.AppCompat.SearchResult.Subtitle"
             />
         <Spinner
+            android:id="@+id/spinCancer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
@@ -59,6 +66,7 @@
             style="@style/Base.TextAppearance.AppCompat.SearchResult.Subtitle"
             />
         <Spinner
+            android:id="@+id/spinSangre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
@@ -68,7 +76,7 @@
             android:id="@+id/btnNext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Siguiente"
+            android:text="Guardar"
             />
     </LinearLayout>
 </ScrollView>

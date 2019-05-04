@@ -73,6 +73,7 @@
             style="@style/Base.TextAppearance.AppCompat.SearchResult.Subtitle"
             />
         <Spinner
+            android:id="@+id/spinZona"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
@@ -83,6 +84,7 @@
             style="@style/Base.TextAppearance.AppCompat.SearchResult.Subtitle"
             />
         <EditText
+            android:id="@+id/edtDireccion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Ingrese Direccion"

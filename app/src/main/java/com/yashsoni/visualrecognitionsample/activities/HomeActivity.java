@@ -66,14 +66,13 @@ public class HomeActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
 
         initializeViews();
+        Intent intent = getIntent();
+        String dniPaciente=intent.getStringExtra("DNI");
         edtDni= findViewById(R.id.edtDNI);
+        edtDni.setText(dniPaciente);
         btnBuscar= findViewById(R.id.btnBuscar);
-        btnBuscar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                BuscarCliente(edtDni.getText().toString());
-            }
-        });
+        BuscarCliente(dniPaciente);
+
         observable = Single.create((SingleOnSubscribe<ClassifiedImages>) emitter -> {
             IamOptions options = new IamOptions.Builder()
                     .apiKey(API_KEY)
@@ -84,7 +83,7 @@ public class HomeActivity extends AppCompatActivity {
                     .imagesFile(localFile)
                     //.url(etUrl.getText().toString())
                     .threshold((float) 0.6)
-                    .classifierIds(Arrays.asList("ModelodeReconocimientodeCancer_1741189594"))
+                    .classifierIds(Arrays.asList("CancerApp_2004385449"))
                     .build();
 
             ClassifiedImages classifiedImages = visualRecognition.classify(classifyOptions).execute();

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="15dp"
+    tools:context=".RegisterDoctorActivity">
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="DermApp"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:textSize="35sp"
+            android:gravity="center_horizontal"
+            android:padding="20dp" />
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_launcher_background"
+            app:layout_constraintTop_toBottomOf="@+id/title"
+            android:layout_gravity="center_horizontal"
+            />
+        <TextView
+            android:id="@+id/textUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Usuario:"
+            app:layout_constraintTop_toBottomOf="@+id/logo"
+            android:layout_marginTop="14dp"
+            style="@style/Base.TextAppearance.AppCompat.Subhead"
+            />
+        <EditText
+            android:id="@+id/usuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:hint="Ingrese nombre usuario"
+            style="@style/Base.TextAppearance.AppCompat.Subhead"
+            app:layout_constraintTop_toBottomOf="@+id/textUsuario"
+            />
+        <TextView
+            android:id="@+id/textContraseña"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Contraseña: "
+            app:layout_constraintTop_toBottomOf="@+id/usuario"
+            style="@style/Base.TextAppearance.AppCompat.Subhead"
+            />
+        <EditText
+            android:id="@+id/contraseña"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:hint="Ingrese contraseña"
+            app:layout_constraintTop_toBottomOf="@+id/textContraseña"
+            style="@style/Base.TextAppearance.AppCompat.Subhead"
+            tools:ignore="MissingConstraints" />
+        <TextView
+            android:id="@+id/textContraseña2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Repita Contraseña: "
+            app:layout_constraintTop_toBottomOf="@+id/contraseña"
+            style="@style/Base.TextAppearance.AppCompat.Subhead"
+            />
+        <EditText
+            android:id="@+id/contraseña2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:hint="Ingrese contraseña"
+            app:layout_constraintTop_toBottomOf="@+id/textContraseña2"
+            style="@style/Base.TextAppearance.AppCompat.Subhead"
+
+            />
+        <ProgressBar
+            android:id="@+id/robustez"
+            app:layout_constraintTop_toBottomOf="@+id/contraseña2"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"
+            android:max="100"
+            android:maxHeight="20dp"
+            android:minHeight="20dp"
+            android:progress="0"
+            android:secondaryProgress="100"
+
+
+            />
+        <TextView
+            android:id="@+id/progress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/robustez"
+            android:text="No ingresado"
+            />
+
+        <Button
+            android:id="@+id/enviar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enviar"
+            app:layout_constraintTop_toBottomOf="@+id/robustez"
+            app:layout_constraintLeft_toRightOf="parent"
+            app:layout_constraintRight_toLeftOf="parent"
+            android:layout_margin="20dp"
+            />
+
+</LinearLayout>
