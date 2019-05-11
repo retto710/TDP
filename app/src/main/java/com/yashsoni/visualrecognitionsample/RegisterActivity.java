@@ -73,9 +73,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 CrearPaciente();
-                Intent HomeIntent= new Intent(getApplicationContext(),RegisterGeoDatActivity.class);
-                HomeIntent.putExtra("dni",edtDNI.getText().toString());
-                startActivity(HomeIntent);
+
             }
         });
 
@@ -133,13 +131,16 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                 });*/
         //Otra manera de guardar
-        if (isEmailValid(edtDNI.getText().toString()))
+        if (isEmailValid(edtCorreo.getText().toString())){
         pacientes.document(edtDNI.getText().toString()).set(paciente);
         BuscarCliente(edtDNI.getText().toString());
+        Intent HomeIntent= new Intent(getApplicationContext(),RegisterGeoDatActivity.class);
+        HomeIntent.putExtra("dni",edtDNI.getText().toString());
+        startActivity(HomeIntent);
         }
         else   {
             Toast.makeText(this, "Ingrese un email válido", Toast.LENGTH_SHORT).show();
-        }
+        }}
     }
 
     private void BuscarCliente(String dni)

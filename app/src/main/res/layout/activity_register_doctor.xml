@@ -28,7 +28,7 @@
             android:id="@+id/textUsuario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Usuario:"
+            android:text="Correo Electronico:"
             app:layout_constraintTop_toBottomOf="@+id/logo"
             android:layout_marginTop="14dp"
             style="@style/Base.TextAppearance.AppCompat.Subhead"
@@ -38,7 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
-            android:hint="Ingrese nombre usuario"
+            android:hint="Ingrese correo electronico"
             style="@style/Base.TextAppearance.AppCompat.Subhead"
             app:layout_constraintTop_toBottomOf="@+id/textUsuario"
             />

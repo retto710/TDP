@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -66,7 +67,7 @@ public class RegisterDoctorInfoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 CrearDoctor();
-                Intent HomeIntent= new Intent(getApplicationContext(),PatientActivity.class);
+                Intent HomeIntent= new Intent(getApplicationContext(), PatientActivity.class);
                 HomeIntent.putExtra("dni",edtDNI.getText().toString());
                 startActivity(HomeIntent);
             }

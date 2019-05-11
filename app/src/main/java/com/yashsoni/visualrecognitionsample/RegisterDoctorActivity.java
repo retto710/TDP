@@ -125,6 +125,8 @@ public class RegisterDoctorActivity extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     // Sign in success, update UI with the signed-in user's information
+                                    final FirebaseUser user = mAuth.getCurrentUser();
+                                    user.sendEmailVerification();
                                     Intent HomeIntent= new Intent(getApplicationContext(),RegisterDoctorInfoActivity.class);
                                     HomeIntent.putExtra("correo",username.getText().toString());
                                     startActivity(HomeIntent);
