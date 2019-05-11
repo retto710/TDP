@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -26,6 +27,8 @@ import com.yashsoni.visualrecognitionsample.activities.HomeActivity;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class RegisterActivity extends AppCompatActivity {
     FirebaseFirestore db;
@@ -130,9 +133,12 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                 });*/
         //Otra manera de guardar
-
+        if (isEmailValid(edtDNI.getText().toString()))
         pacientes.document(edtDNI.getText().toString()).set(paciente);
         BuscarCliente(edtDNI.getText().toString());
+        }
+        else   {
+            Toast.makeText(this, "Ingrese un email válido", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -158,6 +164,25 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
+    private boolean isEmailValid(String email)
+    {
+        String regExpn =
+                "^(([\\w-]+\\.)+[\\w-]+|([a-zA-Z]{1}|[\\w-]{2,}))@"
+                        +"((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
+                        +"[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\."
+                        +"([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
+                        +"[0-9]{1,2}|25[0-5]|2[0-4][0-9])){1}|"
+                        +"([a-zA-Z]+[\\w-]+\\.)+[a-zA-Z]{2,4})$";
 
+        CharSequence inputStr = email;
+
+        Pattern pattern = Pattern.compile(regExpn,Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(inputStr);
+
+        if(matcher.matches())
+            return true;
+        else
+            return false;
+    }
 
 }

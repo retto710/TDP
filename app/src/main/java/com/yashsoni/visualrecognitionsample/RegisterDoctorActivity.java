@@ -20,6 +20,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class RegisterDoctorActivity extends AppCompatActivity {
     private TextView texto;
     private EditText Password;
@@ -106,7 +109,8 @@ public class RegisterDoctorActivity extends AppCompatActivity {
         enviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                if (isEmailValid(username.getText().toString()))
+                {
                 if(pb.getProgress()<25)
                     Password.setError("Contraseña debil");
                 else {
@@ -136,6 +140,11 @@ public class RegisterDoctorActivity extends AppCompatActivity {
 
                     }
                 }
+                //HASTA AQUI
+                }
+                else   {
+                    Toast.makeText(getApplicationContext(), "Ingrese un email válido", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -143,5 +152,26 @@ public class RegisterDoctorActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+    }
+
+    private boolean isEmailValid(String email)
+    {
+        String regExpn =
+                "^(([\\w-]+\\.)+[\\w-]+|([a-zA-Z]{1}|[\\w-]{2,}))@"
+                        +"((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
+                        +"[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\."
+                        +"([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
+                        +"[0-9]{1,2}|25[0-5]|2[0-4][0-9])){1}|"
+                        +"([a-zA-Z]+[\\w-]+\\.)+[a-zA-Z]{2,4})$";
+
+        CharSequence inputStr = email;
+
+        Pattern pattern = Pattern.compile(regExpn,Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(inputStr);
+
+        if(matcher.matches())
+            return true;
+        else
+            return false;
     }
 }

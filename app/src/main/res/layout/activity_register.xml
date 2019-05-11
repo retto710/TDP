@@ -62,12 +62,12 @@
             android:layout_height="wrap_content"
             android:hint="Ingrese Apellido materno del paciente"
             />
+
         <TextView
+            style="@style/Base.TextAppearance.AppCompat.SearchResult.Subtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Edad"
-            style="@style/Base.TextAppearance.AppCompat.SearchResult.Subtitle"
-            />
+            android:text="Edad" />
         <EditText
             android:id="@+id/edtEdad"
             android:layout_width="wrap_content"
@@ -98,6 +98,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="Ingrese DNI de paciente"
+            android:maxLength="8"
             android:inputType="number"
             />
         <TextView
@@ -111,7 +112,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Ingrese direccion"
-            android:inputType="number"
+            android:inputType="text"
             />
         <TextView
             android:layout_width="match_parent"
@@ -138,7 +139,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="Ingrese correo del paciente"
-            android:inputType="date"
+            android:inputType="textEmailAddress"
             />
         <Button
             android:id="@+id/btnGuardar"
