@@ -185,6 +185,13 @@ public class PatientActivity extends AppCompatActivity {
                         CameraPermission();
                     }
                 });
+        myAlertDialog.setNeutralButton("Modificar", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface arg0, int arg1) {
+                Intent HomeIntent = new Intent(getApplicationContext(),ModifyPatientActivity.class);
+                HomeIntent.putExtra("DNI",dniPaciente);
+                startActivity(HomeIntent);
+            }
+        });
         myAlertDialog.show();
     }
 
